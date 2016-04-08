@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">YunFu</string>
+    <string name="drawer_open" translatable="false">侧栏菜单打开</string>
+    <string name="drawer_close" translatable="false">侧栏菜单关闭</string>
+</resources>

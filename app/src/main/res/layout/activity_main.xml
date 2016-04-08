@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.javon.yunfu.MainActivity">
+
+    <include layout="@layout/base_title" />
+
+
+    <com.javon.yunfu.wight.adwheel.BGABanner
+        android:id="@+id/banner_main_cube"
+        style="@style/BannerDefaultStyle"
+        app:banner_transitionEffect="cube" />
+
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/dl_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="start">
+
+        <LinearLayout
+            android:id="@+id/ll_rp_content"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left">
+
+            <include layout="@layout/drawer_content" />
+        </LinearLayout>
+
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+</LinearLayout>
