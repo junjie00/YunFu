@@ -3,9 +3,11 @@ package com.javon.yunfu.base;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -16,7 +18,7 @@ import com.javon.yunfu.R;
 /**
  * Created by javon on 16/4/8.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView tvBarTitle;
     private TextView tvBarRight;
@@ -46,13 +48,23 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     private void initTitle(){
-         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         tvBarTitle = (TextView) toolbar.findViewById(R.id.tv_main_toolbar_title);
         tvBarRight = (TextView) toolbar.findViewById(R.id.tv_main_toolbar_right);
         setSupportActionBar(toolbar);
         ActionBar bar = getSupportActionBar();
         bar.setDisplayHomeAsUpEnabled(true);
         bar.setDisplayShowTitleEnabled(false);
+    }
+
+
+    protected void setRightBar(String tip){
+        if(tvBarRight != null && !TextUtils.isEmpty(tip)){
+            tvBarRight.setVisibility(View.VISIBLE);
+            tvBarRight.setText(tip);
+            tvBarRight.setOnClickListener(this);
+        }
+
     }
 
 

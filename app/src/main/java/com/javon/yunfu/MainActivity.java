@@ -40,6 +40,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void init(Bundle saveInstanceState) {
         setTitle("首页");
+        setRightBar("二维码扫描");
         dlMain = (DrawerLayout) findViewById(R.id.dl_main);
         llRpContent = (LinearLayout) findViewById(R.id.ll_rp_content);
         initCube();
@@ -58,6 +59,7 @@ public class MainActivity extends BaseActivity {
                 Log.e("MainActivity", bannerModel.toString());
                 for (int i = 0; i < mCubeViews.size(); i++) {
                     FrescoTool.loadImage(mCubeViews.get(i), bannerModel.imgs.get(i));
+                    mCubeViews.get(i).setTag(bannerModel.imgs.get(i));
                 }
                 // 也可以不设置tips
 //                mCubeBanner.setTips(bannerModel.tips);
@@ -72,15 +74,25 @@ public class MainActivity extends BaseActivity {
     private List<SimpleDraweeView> getViews(int count) {
         List<SimpleDraweeView> views = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            views.add((SimpleDraweeView) getLayoutInflater().inflate(R.layout.banner_view_image_item, null));
+            SimpleDraweeView adView = (SimpleDraweeView) getLayoutInflater().inflate(R.layout.banner_view_image_item, null);
+            adView.setOnClickListener(this);
+            views.add(adView);
         }
         return views;
     }
 
 
-
-
-
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_main_toolbar_right:
+                TwoDimensionCodeActivity.newInstance(this);
+                break;
+            case R.id.my_image_view:
+                showToast((String) v.getTag());
+                break;
+        }
+    }
 
 
     @Override
